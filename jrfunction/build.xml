@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<project name="jrfunction" basedir="." default="eclipse">
+
+	<target name="eclipse">
+		<gradle task="eclipse"/>
+	</target>
+
+	<macrodef name="gradle">
+		<attribute name="task"/>
+		<sequential>
+	        <exec executable="cmd" failonerror="true">
+	            <env key="JAVA_HOME" value="C:\Program Files\Java\jdk1.8.0_60"/>
+	        	<arg line="/c gradlew.bat -g C:\jarcache\gradle @{task}"/>
+	        </exec>
+		</sequential>
+	</macrodef>
+	
+</project>
