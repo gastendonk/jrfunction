@@ -1,8 +1,11 @@
 package jrfunction.function;
 
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
+import net.sf.jasperreports.engine.JRParameter;
 import net.sf.jasperreports.functions.AbstractFunctionSupport;
+import net.sf.jasperreports.functions.FunctionContext;
 import net.sf.jasperreports.functions.annotations.Function;
 import net.sf.jasperreports.functions.annotations.FunctionCategories;
 import net.sf.jasperreports.functions.annotations.FunctionParameter;
@@ -18,8 +21,13 @@ public class GastendonkFunctions extends AbstractFunctionSupport {
 			return null;
 		}
 		if ("M-".equals(pattern)) {
-			// TODO if Locale is Germany
-			pattern = "dd.MM.yyyy";
+			FunctionContext context = getContext();
+			Locale locale = (Locale) context.getParameterValue(JRParameter.REPORT_LOCALE);
+			if (Locale.GERMANY.equals(locale)) {
+				pattern = "dd.MM.yyyy";
+			} else {
+				pattern = "yyyy-MM-dd";
+			}
 		}
 		return new SimpleDateFormat(pattern).format(date);
 	}
