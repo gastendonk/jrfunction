@@ -17,9 +17,6 @@ public class GastendonkFunctions extends AbstractFunctionSupport {
 	@Function("GDATEFORMAT")
 	@FunctionParameters({ @FunctionParameter("date"), @FunctionParameter("pattern") })
 	public String GDATEFORMAT(java.util.Date date, String pattern) {
-		if (date == null) {
-			return null;
-		}
 		if ("M-".equals(pattern)) {
 			FunctionContext context = getContext();
 			Locale locale = (Locale) context.getParameterValue(JRParameter.REPORT_LOCALE);
@@ -28,6 +25,9 @@ public class GastendonkFunctions extends AbstractFunctionSupport {
 			} else {
 				pattern = "yyyy-MM-dd";
 			}
+		}
+		if (date == null) {
+			return null;
 		}
 		return new SimpleDateFormat(pattern).format(date);
 	}
