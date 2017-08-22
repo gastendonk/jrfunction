@@ -4,6 +4,9 @@
 	<target name="eclipse">
 		<gradle task="eclipse"/>
 	</target>
+	<target name="dep">
+		<gradle task="dep"/>
+	</target>
 
 	<macrodef name="gradle">
 		<attribute name="task"/>
